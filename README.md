@@ -14,9 +14,10 @@ wwwroot
 
 models
   properties of object (in this case the pic name and grade for a student)
-    ""[Key] 
-        public int Id { get; set; } ""
-    By applying [Key] to a property, you ensure it is treated as the primary key when creating the database table, generating      queries, and establishing relationships between entities. a query is a request for specific information from a database. 
+  
+  [Key] public int Id { get; set; }
+  
+  [Key] By applying to a property, you ensure it is treated as the primary key when creating the database table, generating      queries, and establishing relationships between entities. a query is a request for specific information from a database. 
 
   [Required] = namespace to mark a property as required.
 
