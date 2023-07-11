@@ -14,8 +14,11 @@ wwwroot
 
 models
   properties of object (in this case the pic name and grade for a student)
-  
-  a query is a request for specific information from a database.
+
+  keyterms
+  ------------------
+  query = is a request for specific information from a database.
+  enum = value type that allows you to define a set of named constants
   
   [Key] By applying to a property, you ensure it is treated as the primary key when creating the database table, generating      queries, and establishing relationships between entities. 
   
