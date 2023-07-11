@@ -13,10 +13,11 @@ wwwroot
   static file with stuff: CSS, js, ect
 
 models
+------------------
   properties of object (in this case the pic name and grade for a student)
 
   keyterms
-  ------------------
+  ----
   query = is a request for specific information from a database.
   enum = value type that allows you to define a set of named constants
   
