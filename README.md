@@ -44,4 +44,4 @@ models
   -----
   ![Screenshot 2023-07-12 011152](https://github.com/elias-adam-gh/theSite-repo/assets/122506412/6990b6c7-2759-4a94-84bc-272fe9088c8d)
 
-
+https://www.youtube.com/watch?v=L7p5Mi4DBMk&list=PL2Q8rFbm-4ruTcZY39MNOsEu4p76HQ5VX&index=23
