@@ -38,3 +38,10 @@ models
   [EmailAddress]: Ensures that a string property has a valid email address format.
   
   [Compare]: Compares the value of a property with another property in the same model.
+
+
+  data config
+  -----
+  ![Screenshot 2023-07-12 011152](https://github.com/elias-adam-gh/theSite-repo/assets/122506412/6990b6c7-2759-4a94-84bc-272fe9088c8d)
+
+
