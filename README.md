@@ -11,6 +11,12 @@ properties
 
 wwwroot
   static file with stuff: CSS, js, ect
+
+program.cs
+  WebApplication.CreateBuilder(args) method is responsible for creating an instance of the WebApplicationBuilder class, which provides a fluent API for configuring and building the web application.
+The WebApplicationBuilder instance allows you to configure various aspects of the application, such as adding services, configuring middleware, setting up routing, and more.
+The entry point and execution of the application are handled implicitly by calling the Run method on the built WebApplication instance (app). This starts the application and listens for incoming HTTP requests.
+Although the Main method is not explicitly defined in your code, the entry point and execution flow of the application are still handled internally by the ASP.NET Core framework based on the fluent API and the app.Run() method call in your code
   
 keyterms
   ----
