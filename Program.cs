@@ -1,34 +1,32 @@
-var builder = WebApplication.CreateBuilder(args);
+using theSite.Data;
 
-// Configure your database context
+var builder = WebApplication.CreateBuilder(args); // Create a WebApplicationBuilder instance.
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    
+    // Configure your database context
+    // Add the AppDbContext to the service container.
 });
 
+builder.Services.AddControllersWithViews(); // Add controllers and views support to the service container.
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+var app = builder.Build(); // Build the WebApplication instance.
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseExceptionHandler("/Home/Error"); // Add exception handling middleware.
+    app.UseHsts(); // Add HTTP Strict Transport Security (HSTS) middleware.
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseHttpsRedirection(); // Add HTTP to HTTPS redirection middleware.
+app.UseStaticFiles(); // Add static files middleware.
 
-app.UseRouting();
+app.UseRouting(); // Add routing middleware.
 
-app.UseAuthorization();
+app.UseAuthorization(); // Add authorization middleware.
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}"); // Map the default controller route.
 
-app.Run();
+app.Run(); // Start the application and listen for incoming HTTP requests.

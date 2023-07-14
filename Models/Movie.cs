@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using theSite.Data.Enums;
 
 namespace theSite.Models
 {
-    public class Student
+    public class Movie
     {
         [Key] public int Id { get; set; }
         
