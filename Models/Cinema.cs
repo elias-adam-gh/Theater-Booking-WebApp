@@ -10,5 +10,8 @@ namespace theSite.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageURL { get; set; }
+
+        //Relationships
+        public List<Movie> Movies { get; set; } //navigation property
     }
 }

@@ -10,5 +10,8 @@ namespace theSite.Models
         public string ProfilePictureURL { get; set; } //string for URL
         [StringLength(50, MinimumLength = 2)] public string FullName { get; set; } //attribute to require 1<20 for name
         [StringLength(100, MinimumLength = 0)] public string Bio { get; set; } //attribute to limit bio to 0<100
+
+        //Relationships
+        public List<Actor_Movie> Actors_Movies { get; set; } //navigation property
     }
 }
