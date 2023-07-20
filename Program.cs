@@ -1,11 +1,16 @@
+using Microsoft.EntityFrameworkCore;
 using theSite.Data;
+
 
 var builder = WebApplication.CreateBuilder(args); // Create a WebApplicationBuilder instance.
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    // Configure your database context
-    // Add the AppDbContext to the service container.
+    // Retrieve the connection string from the appsettings.json file
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+
+    // Configure your database context with the connection string
+    options.UseSqlServer(connectionString);
 });
 
 builder.Services.AddControllersWithViews(); // Add controllers and views support to the service container.
