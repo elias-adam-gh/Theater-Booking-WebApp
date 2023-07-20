@@ -51,6 +51,8 @@ models
   [Compare]: Compares the value of a property with another property in the same model.
 
 
+  [ForeignKey("string")]: A foreign key is a relational database concept used to establish a connection between two tables by referencing the primary key of one table as a column in another table
+
   data config
   -----
   ![Screenshot 2023-07-12 011152](https://github.com/elias-adam-gh/theSite-repo/assets/122506412/6990b6c7-2759-4a94-84bc-272fe9088c8d)
@@ -62,8 +64,85 @@ constructor will take a parameter that is going to be the db context options and
 regarding the program.cs file:---
 The WebApplication class combines the responsibilities of both the Program.cs and Startup.cs files into a single file, simplifying the project structure With this new hosting model, the configuration and pipeline setup are usually done within the WebApplication object itself, instead of a separate Startup.cs file. The configuration code you provided in the Program.cs file is setting up middleware, routing, and default controllers. So, in the case of your project, you don't have a separate Startup.cs file, and the configuration is done directly within the Program.cs file using the WebApplication object.
 
+movie.cs fiel explanation
+----
+public List<Actor_Movie> Actors_Movies { get; set; }: This is a navigation property representing a one-to-many relationship between Movie and Actor_Movie entities. It indicates that a Movie can have multiple associated Actor_Movie records.
+
+public Producer Producer { get; set; } and public int ProducerId { get; set; }: These two properties represent a relationship between Movie and Producer entities. The Producer property is a navigation property indicating that a Movie is associated with a single Producer. The ProducerId property is the foreign key that corresponds to the primary key of the Producer entity.
+
+public Cinema Cinema { get; set; } and public int CinemaId { get; set; }: Similarly, these two properties represent a relationship between Movie and Cinema entities. The Cinema property is a navigation property indicating that a Movie is associated with a single Cinema. The CinemaId property is the foreign key that corresponds to the primary key of the Cinema entity.
+
+
+-------------
+
+appDbContextfile explanation
+------
+The AppDbContext class is defined and inherits from DbContext, which is provided by Entity Framework Core.
+The class constructor accepts an instance of DbContextOptions<AppDbContext> and passes it to the base class constructor to configure the database connection.
+The OnModelCreating method is overridden to provide custom model configurations, if needed. It can be used to define relationships, configure primary keys, etc. The base class implementation of this method is called using base.OnModelCreating(modelBuilder) to ensure the base configurations are applied.
+DbSet properties are defined for each entity class (Actor, Movie, Cinema, Producer, and Actor_Movie). These properties represent the corresponding database tables and allow querying and manipulating data using LINQ or Entity Framework methods
+
 sql format: ![image](https://github.com/elias-adam-gh/Coding-Race-repo/assets/122506412/abd2e8a2-b5e1-4f49-9220-e32ada88a3cd)
 
 one to many, but if there is many to many, we make an intermediate, in this case, one to many movie to actor_movies, and one to many actor to actor movie
 
-https://www.youtube.com/watch?v=L7p5Mi4DBMk&list=PL2Q8rFbm-4ruTcZY39MNOsEu4p76HQ5VX&index=23
+AppSettings.json file
+------
+The "appsettings.json" file in an ASP.NET Core project stores configuration settings for the application. It contains key-value pairs representing various settings:
+
+Connection Strings: Store database connection strings to access databases.
+
+Logging Configuration: Specify logging levels and providers.
+
+Application Settings: Store API keys, feature toggles, or custom configuration.
+
+Third-Party Service Settings: Configuration for external services, like email or payment gateways.
+
+Environment-Specific Settings: Have different versions for different environments (e.g., Development, Staging, Production).
+
+
+DATABASE
+-------------------------
+don't need SSMS open during the development process. Visual Studio handles the communication with the database for you, and you interact with the database through code using Entity Framework or other data access libraries.
+
+models: define them to represent your data tables
+
+Visual Studio should have generated a connection string for you. This connection string contains the necessary information to connect to your SQL Server instance. You can find the connection string in the "Web.config" or "App.config" file
+
+
+
+Database Configuraiton
+--------
+1. data connections - add new sql db - server name w ms authorization
+2. 
+
+
+
+
+Order of project steps
+1.
+2.
+3. Start of configuring sql server
+4. Created MS SQL Server DB on local machine
+5. Connected Db to Project through Visual studio
+6. configured the connection string to the appsetting.json file
+7. configure the app db context in the program (startup) file
+8. The main purpose of downloading the Microsoft.EntityFrameworkCore.SqlServer NuGet package for your project is to enable Entity Framework Core to work with Microsoft SQL Server databases.
+9. end of sql server configuration
+10.
+
+
+
+
+features to consider for the future
+-----
+1. access to database outside of local machine
+   ----
+   Host the Database on a Server: Instead of using a local database, consider hosting the SQL Server database on a dedicated server or a cloud-based service like Microsoft Azure SQL Database. This way, your friend can access the application, and the database is accessible from anywhere with the appropriate connection settings.
+   
+2. learning security configurations
+   -----
+   Security Concerns: Allowing external access to your local database can be a significant security risk. It exposes your database to potential attacks and unauthorized access from the internet
+
+   
+3. implement MS Azure
