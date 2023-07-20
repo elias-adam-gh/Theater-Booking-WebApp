@@ -86,11 +86,35 @@ sql format: ![image](https://github.com/elias-adam-gh/Coding-Race-repo/assets/12
 
 one to many, but if there is many to many, we make an intermediate, in this case, one to many movie to actor_movies, and one to many actor to actor movie
 
+AppSettings.json file
+------
+The "appsettings.json" file in an ASP.NET Core project stores configuration settings for the application. It contains key-value pairs representing various settings:
+
+Connection Strings: Store database connection strings to access databases.
+
+Logging Configuration: Specify logging levels and providers.
+
+Application Settings: Store API keys, feature toggles, or custom configuration.
+
+Third-Party Service Settings: Configuration for external services, like email or payment gateways.
+
+Environment-Specific Settings: Have different versions for different environments (e.g., Development, Staging, Production).
+
+
+DATABASE
+-------------------------
+don't need SSMS open during the development process. Visual Studio handles the communication with the database for you, and you interact with the database through code using Entity Framework or other data access libraries.
+
+models: define them to represent your data tables
+
+Visual Studio should have generated a connection string for you. This connection string contains the necessary information to connect to your SQL Server instance. You can find the connection string in the "Web.config" or "App.config" file
 
 
 
-
-
+Database Configuraiton
+--------
+1. data connections - add new sql db - server name w ms authorization
+2. 
 
 
 
@@ -98,16 +122,27 @@ one to many, but if there is many to many, we make an intermediate, in this case
 Order of project steps
 1.
 2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
+3. Start of configuring sql server
+4. Created MS SQL Server DB on local machine
+5. Connected Db to Project through Visual studio
+6. configured the connection string to the appsetting.json file
+7. configure the app db context in the program (startup) file
+8. The main purpose of downloading the Microsoft.EntityFrameworkCore.SqlServer NuGet package for your project is to enable Entity Framework Core to work with Microsoft SQL Server databases.
+9. end of sql server configuration
 10.
 
 
 
 
-https://www.youtube.com/watch?v=L7p5Mi4DBMk&list=PL2Q8rFbm-4ruTcZY39MNOsEu4p76HQ5VX&index=23
+features to consider for the future
+-----
+1. access to database outside of local machine
+   ----
+   Host the Database on a Server: Instead of using a local database, consider hosting the SQL Server database on a dedicated server or a cloud-based service like Microsoft Azure SQL Database. This way, your friend can access the application, and the database is accessible from anywhere with the appropriate connection settings.
+   
+2. learning security configurations
+   -----
+   Security Concerns: Allowing external access to your local database can be a significant security risk. It exposes your database to potential attacks and unauthorized access from the internet
+
+   
+3. implement MS Azure
