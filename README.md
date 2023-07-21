@@ -1,4 +1,4 @@
-# theSite Project README
+# E-Commerce Booking Application README
 
 ## Description
 
@@ -230,4 +230,14 @@ features to consider for the future
 
    
 3. implement MS Azure
+
+
+Steps after configuring database; MIGRATION
+-----
+Migreation: sync model changes with your database schema
+
+Steps
+-----
+1. download: "ms entity fw core tools" nuget package
+
 --->
