@@ -225,8 +225,9 @@ features to consider for the future
    
 2. learning security configurations
    -----
-   --->
+   
    Security Concerns: Allowing external access to your local database can be a significant security risk. It exposes your database to potential attacks and unauthorized access from the internet
 
    
 3. implement MS Azure
+--->
