@@ -1,4 +1,69 @@
-# theSite
+theSite Project README
+Description
+theSite is a web application project built using ASP.NET Core. It involves database operations and potentially utilizes OpenAI services. The project includes various dependencies, libraries, and key terms relevant to its implementation.
+
+Project Structure
+Connected Services: This section may include references to databases and possible integrations with OpenAI services.
+
+Dependencies: Lists the main ASP.NET libraries used in the project.
+
+Properties: Mentioned a JSON file related to project properties.
+
+wwwroot: Contains static files like CSS and JavaScript.
+
+program.cs: Explanation of the main application entry point, WebApplicationBuilder, and how the application handles HTTP requests.
+
+Key Terms
+Query: A request for specific information from a database.
+
+Enum: A value type that allows you to define a set of named constants.
+
+Shortcuts
+Property Shortcut: prop
+
+Constructor Shortcut: ctor
+
+Models
+Student Model:
+Properties: "pic name" and "grade".
+Attributes: [Key], [Required], [StringLength], [Range], [RegularExpression], [EmailAddress], [Compare], [ForeignKey].
+AppDbContext File
+The AppDbContext class is defined and inherits from DbContext.
+The class constructor accepts an instance of DbContextOptions<AppDbContext> to configure the database connection.
+The OnModelCreating method is overridden to provide custom model configurations if needed.
+DbSet properties are defined for each entity class (Actor, Movie, Cinema, Producer, and Actor_Movie).
+SQL Database Configuration
+Start of configuring SQL Server.
+Created MS SQL Server DB on the local machine.
+Connected Db to the Project through Visual Studio.
+Configured the connection string to the appsettings.json file.
+Configured the AppDbContext in the program (startup) file.
+Downloaded the Microsoft.EntityFrameworkCore.SqlServer NuGet package.
+End of SQL Server configuration.
+AppSettings.json File
+The appsettings.json file stores configuration settings for the application.
+It includes connection strings, logging configuration, application settings, third-party service settings, and environment-specific settings.
+Order of Project Steps
+[List of ordered project steps]
+Features to Consider for the Future
+Access to the database outside of the local machine, e.g., hosting the database on a server or cloud-based service like Microsoft Azure SQL Database.
+Learning about security configurations for protecting the database from potential risks.
+Important Notes
+It's essential to ensure proper security measures when enabling external access to databases. Considerations should be made regarding data privacy, authentication, and authorization to prevent unauthorized access and potential security risks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--- # theSite
 
 Connected Services
   database stuff + openai?
@@ -142,6 +207,7 @@ features to consider for the future
    
 2. learning security configurations
    -----
+   --->
    Security Concerns: Allowing external access to your local database can be a significant security risk. It exposes your database to potential attacks and unauthorized access from the internet
 
    
