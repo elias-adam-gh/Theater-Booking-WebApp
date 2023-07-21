@@ -51,6 +51,24 @@ theSite is a web application project built using ASP.NET Core. It involves datab
 6. Downloaded the `Microsoft.EntityFrameworkCore.SqlServer` NuGet package.
 7. End of SQL Server configuration.
 
+## Migration
+
+1. Download the "ms entity fw core tools" NuGet package.
+2. Ensure the "connectionstring" in the appsettings.json file is not null before adding a migration name in the Package Manager Console (PMC).
+3. Go to PMC and add the migration: `PM> Add-Migration <name (initial)>`.
+4. This creates a class file and another file: `20230721053004_Initial.cs`, and `AppDbContextModelSnapshot`.
+   - The "Initial" migration is the first file in the ASP.NET Core project, capturing the starting state of the database schema. It creates tables for "Actors," "Cinemas," "Producers," "Movies," and a junction table "Actors_Movies." The migration also defines the foreign key relationships between these tables, establishing the foundation for subsequent schema changes.
+   - The `AppDbContextModelSnapshot` file captures the initial state of the database schema for the ASP.NET Core project. When applying this migration, the database will be created with the defined tables and their relationships. Conversely, when rolling back the migration, all tables created in this migration will be dropped, effectively undoing the changes made in the `Up` method.
+
+5. You can update the database using PMC: `PM> Update-Database`.
+6. To visualize the database schema, open SQL Server Management Studio (SMSS), connect to the server, find the project's database, and add a new database diagram. Add all the tables to see the GUI of relationships.
+   - If, for instance, one of the table names was misspelled, you can:
+     - Go to the AppDbContext file.
+     - Rename the table.
+     - PMC: `PM> Add-Migration NameFix`.
+     - Then apply the migration: `PM> Update-Database`.
+     - Verify the changes in the Server Explorer under tables.
+
 ## AppSettings.json File
 
 - The `appsettings.json` file stores configuration settings for the application.
@@ -68,6 +86,36 @@ theSite is a web application project built using ASP.NET Core. It involves datab
 ## Important Notes
 
 - It's essential to ensure proper security measures when enabling external access to databases. Considerations should be made regarding data privacy, authentication, and authorization to prevent unauthorized access and potential security risks.
+
+## What is a Migration?
+
+Migrations in an ASP.NET MVC project with MS SQL Server involve managing database schema changes over time. Using Entity Framework, you define data models as C# classes representing tables, create a database context, enable migrations, add new migrations, and apply them with the Update-Database command to keep the database in sync with the application code.
+
+1. **ASP.NET MVC Application**: This represents your ASP.NET MVC web application.
+2. **Data Models (C# Classes)**: These are C# classes that define the data model of your application, representing the tables and their relationships in the database.
+3. **Database Context**: The Database Context is a class that extends **`DbContext`**, providing a way to interact with the database and manage data.
+4. **Migration**: Each migration contains changes to the database schema and is represented by a C# class. It describes how the database schema should change to reflect the changes made to the data models.
+5. **Database**: This is the actual Microsoft SQL Server database, where the schema evolves over time with each migration applied.
+
+The process:
+
+1. You define data models and create a database context in your ASP.NET MVC application.
+2. You enable migrations using Entity Framework.
+3. Whenever you make changes to the data models (e.g., add a new table, modify an existing table), you add a new migration.
+4. The migration system automatically generates the necessary SQL scripts to apply these changes to the database.
+5. You apply the migration with the **`Update-Database`** command, and the database schema gets updated to match your application code.
+
+Let's break down the key parts of this migration class:
+
+1. **Inheritance**: The class inherits from the **`Migration`** class, which is part of Entity Framework Core. This inheritance allows the migration class to use EF Core's migration functionality.
+2. **Up Method**: The **`Up`** method is called when applying the migration, and it defines the operations to create the database schema. In this case, it creates several database tables (**`Actors`**, **`Cinemas`**, **`Producers`**, and **`Movies`**) with their respective columns and constraints.
+3. **Down Method**: The **`Down`** method is called when rolling back the migration. It defines the operations to undo the changes made in the **`Up`** method. In this case, it drops all the tables created in the **`Up`** method (**`Actors`**, **`Cinemas`**, **`Producers`**, and **`Movies`**).
+4. **CreateTable**: The **`migrationBuilder.CreateTable`** method is used to create new database tables. It specifies the table name and its columns using a lambda expression.
+5. **CreateIndex**: The **`migrationBuilder.CreateIndex`** method creates indexes on the specified columns to improve query performance. In this migration, there are three indexes created for the **`Actors_Movies`**, **`Movies_CinemaId`**, and **`Movies_ProducerId`** tables.
+6. **Foreign Keys (FK)**: The **`migrationBuilder.ForeignKey`** method is used to define foreign key constraints between tables. It specifies which columns are linked as foreign keys and which tables they reference.
+7. **DropTable**: The **`migrationBuilder.DropTable`** method is used to drop a table from the database.
+
+Overall, this migration class captures the initial state of the database schema for the ASP.NET Core project. When applying this migration, the database will be created with the defined tables and their relationships. Conversely, when rolling back the migration, all tables created in this migration will be dropped, effectively undoing the changes made in the **`Up`** method.
 
 
 
@@ -239,5 +287,14 @@ Migreation: sync model changes with your database schema
 Steps
 -----
 1. download: "ms entity fw core tools" nuget package
+2. ensure " connectionstring " in appsettings.json file is not null before adding migration name in PM console
+3. go to PM console to add migration; " PM> Add-Migration <name (initial)> "
+4. this creates a class file and another file: " 20230721053004_Initial.cs ", and " AppDbContextModelSnapshot "
+      The "Initial" migration is the first file in the ASP.NET Core project, capturing the starting state of the database schema. It creates tables for "Actors," "Cinemas," "Producers," "Movies," and a junction table "Actors_Movies." The migration also defines the foreign key relationships between these tables, establishing the foundation for subsequent schema changes.
+      the second file: Overall, this migration class captures the initial state of the database schema for the ASP.NET Core project. When applying this migration, the database will be created with the defined tables and their relationships. Conversely, when rolling back the migration, all tables created in this migration will be dropped, effectively undoing the changes made in the Up method.
+
+5. can update db using the PMC: " PM> Update-Database "
+6. open SMSS (SQL Management Service) -> open the server -> go to databses -> find the project's database -> add a new db diaghram -> add all the tables -> shows GUI of relationships
+      if for instance one of the databases were mispelled, you would: -> go to the AppDbContext file -> rename the "Produucer" -> PMC: PM> Add-Migration NameFix -> then you can in PMC: PM> Update-Database -> and find the changes made in the service explorer in tables 
 
 --->
