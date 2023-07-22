@@ -111,11 +111,19 @@ Seeding the database means populating it with initial data for testing, developm
 
 To seed the database in your E-Commerce Booking Application, you can follow these steps:
 
-1. Create a new class or script that will handle the data seeding process.
-2. Use the `DbContext` to interact with the database and add the initial data.
-3. Implement the seeding logic, which may include creating and inserting data into various tables, respecting any relationships between entities.
-4. Call the seeding method or script during the application startup or as part of the migration process to ensure the data is added when the database is created or updated.
+1. Make the `AppDbInitializer` file responsible for handling data seeding.
 
+2. Within the `AppDbInitializer` class, create a static method called `Seed` to perform the database seeding.
+
+3. Implement the seeding logic using the specified logic and syntax, checking if the database exists.
+
+4. For each model (e.g., Student Model), check if it has any existing data. If not, add static/test models for development purposes.
+
+5. Utilize the syntax for saving changes to persist the seeded data into the database.
+
+6. Add the necessary code to the `program.cs` file to call the `AppDbInitializer.Seed()` method during application startup.
+
+7. Run the application and check to see if the tables have been updated with the seeded data.
 
 
 
@@ -258,9 +266,20 @@ Order of project steps
 7. configure the app db context in the program (startup) file
 8. The main purpose of downloading the Microsoft.EntityFrameworkCore.SqlServer NuGet package for your project is to enable Entity Framework Core to work with Microsoft SQL Server databases.
 9. end of sql server configuration
-10.
+10. 
+11. setup migration environment
+12. 
+13. 
+14. seeding the database
 
 
+Models-
+  properties
+  relationships between properties
+  appdbcontext
+  configure the database in setting json and startup files
+  migration setup
+  seeding the database
 
 
 features to consider for the future
