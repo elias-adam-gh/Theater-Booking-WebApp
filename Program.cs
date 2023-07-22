@@ -17,6 +17,12 @@ builder.Services.AddControllersWithViews(); // Add controllers and views support
 
 var app = builder.Build(); // Build the WebApplication instance.
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    AppDbInitializer.Seed(dbContext); // Call the Seed method from AppDbInitializer class
+}
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error"); // Add exception handling middleware.
