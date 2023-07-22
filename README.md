@@ -131,10 +131,6 @@ To seed the database in your E-Commerce Booking Application, you can follow thes
 
 
 
-
-
-
-
 <!--- # theSite
 
 Connected Services
