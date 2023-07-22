@@ -105,18 +105,16 @@ The process:
 4. The migration system automatically generates the necessary SQL scripts to apply these changes to the database.
 5. You apply the migration with the **`Update-Database`** command, and the database schema gets updated to match your application code.
 
-Let's break down the key parts of this migration class:
+## Seeding the Database
 
-1. **Inheritance**: The class inherits from the **`Migration`** class, which is part of Entity Framework Core. This inheritance allows the migration class to use EF Core's migration functionality.
-2. **Up Method**: The **`Up`** method is called when applying the migration, and it defines the operations to create the database schema. In this case, it creates several database tables (**`Actors`**, **`Cinemas`**, **`Producers`**, and **`Movies`**) with their respective columns and constraints.
-3. **Down Method**: The **`Down`** method is called when rolling back the migration. It defines the operations to undo the changes made in the **`Up`** method. In this case, it drops all the tables created in the **`Up`** method (**`Actors`**, **`Cinemas`**, **`Producers`**, and **`Movies`**).
-4. **CreateTable**: The **`migrationBuilder.CreateTable`** method is used to create new database tables. It specifies the table name and its columns using a lambda expression.
-5. **CreateIndex**: The **`migrationBuilder.CreateIndex`** method creates indexes on the specified columns to improve query performance. In this migration, there are three indexes created for the **`Actors_Movies`**, **`Movies_CinemaId`**, and **`Movies_ProducerId`** tables.
-6. **Foreign Keys (FK)**: The **`migrationBuilder.ForeignKey`** method is used to define foreign key constraints between tables. It specifies which columns are linked as foreign keys and which tables they reference.
-7. **DropTable**: The **`migrationBuilder.DropTable`** method is used to drop a table from the database.
+Seeding the database means populating it with initial data for testing, development, or starting points. It ensures consistent data across environments, aids in testing, and facilitates application demonstrations. This process involves inserting predefined data through scripts or code, and it's crucial to avoid sensitive information in the seed data.
 
-Overall, this migration class captures the initial state of the database schema for the ASP.NET Core project. When applying this migration, the database will be created with the defined tables and their relationships. Conversely, when rolling back the migration, all tables created in this migration will be dropped, effectively undoing the changes made in the **`Up`** method.
+To seed the database in your E-Commerce Booking Application, you can follow these steps:
 
+1. Create a new class or script that will handle the data seeding process.
+2. Use the `DbContext` to interact with the database and add the initial data.
+3. Implement the seeding logic, which may include creating and inserting data into various tables, respecting any relationships between entities.
+4. Call the seeding method or script during the application startup or as part of the migration process to ensure the data is added when the database is created or updated.
 
 
 
