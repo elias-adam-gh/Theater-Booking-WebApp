@@ -310,4 +310,7 @@ Steps
 6. open SMSS (SQL Management Service) -> open the server -> go to databses -> find the project's database -> add a new db diaghram -> add all the tables -> shows GUI of relationships
       if for instance one of the databases were mispelled, you would: -> go to the AppDbContext file -> rename the "Produucer" -> PMC: PM> Add-Migration NameFix -> then you can in PMC: PM> Update-Database -> and find the changes made in the service explorer in tables 
 
+
+If you accidentally give two actors the same ID in your AppDbInitializer, it could lead to various issues when working with your data, especially if you have relationships or constraints that depend on unique IDs. By not assigning IDs explicitly and allowing the database to generate them, you ensure that each actor will have a unique ID, avoiding any duplication issues.
+
 --->
