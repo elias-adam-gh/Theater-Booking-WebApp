@@ -127,6 +127,42 @@ To seed the database in your E-Commerce Booking Application, you can follow thes
 
 
 
+# SSL Certificate Error with SQL Server Express in ASP.NET Project
+
+## Problem Description
+
+When setting up my ASP.NET project with a local SQL Server Express database, I encountered an SSL certificate error during the database connection process. The error message displayed "A connection was successfully established with the server, but then an error occurred during the login process. (provider: SSL Provider, error: 0 - The certificate chain was issued by an authority that is not trusted.)" This problem prevented my application from connecting to the database, hindering its functionality.
+
+## Steps Taken
+
+1. **Setting Up Local SQL Server**: I installed SQL Server Express on my local computer and created a database for my ASP.NET project.
+
+2. **Connection String Configuration**: I configured the connection string in the `appsettings.json` (or `web.config`) file to connect to the local SQL Server instance. The connection string included the necessary parameters to enable SSL encryption: `Encrypt=True;TrustServerCertificate=True`.
+
+3. **SQL Server Configuration Manager**: I opened the SQL Server Configuration Manager to enable SSL encryption for the SQL Server instance. Under "Protocols for MSSQLSERVER," I set "Force Encryption" to "Yes."
+
+4. **Restart SQL Server Service**: After enabling SSL, I restarted the SQL Server service to apply the changes.
+
+## Error Encounter
+
+Despite following the steps above, the application still encountered the SSL certificate error when attempting to establish a connection to the SQL Server Express database. The error message pointed to an issue with the certificate chain, indicating that the client did not trust the server's certificate.
+
+## Troubleshooting and Fix
+
+After researching the error, I discovered that the problem was related to the default SSL configuration of SQL Server Express. The solution involved trusting the server certificate without validating it against a trusted certificate authority (CA). To implement this workaround, I added the `TrustServerCertificate=True` parameter to the connection string.
+
+## Fix Implemented
+
+1. **Update Connection String**: I added `TrustServerCertificate=True` to the connection string in the `appsettings.json` (or `web.config`) file.
+2. **Rebuild and Test**: With the updated connection string, I rebuilt the ASP.NET project and retested the database connection. The SSL certificate error was successfully resolved, and the application could connect to the local SQL Server Express database without any issues.
+
+## Note
+
+While the `TrustServerCertificate=True` parameter solves the SSL certificate error for local development and testing, it is not recommended for production environments. In production, a valid SSL certificate from a trusted certificate authority should be used to ensure secure and authenticated connections.
+
+## Conclusion
+
+By documenting the steps taken, error encountered, and the fix implemented, I have recorded my progress and provided a clear solution for resolving the SSL certificate error with SQL Server Express in my ASP.NET project. This documentation will be helpful for future reference and may assist others facing a similar issue.
 
 
 
