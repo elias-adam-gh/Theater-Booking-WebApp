@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using theSite.Data;
 
 
@@ -21,6 +22,7 @@ using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     AppDbInitializer.Seed(dbContext); // Call the Seed method from AppDbInitializer class
+    Debug.WriteLine("AppDbInitializer.Seed method has been called.");
 }
 
 if (!app.Environment.IsDevelopment())

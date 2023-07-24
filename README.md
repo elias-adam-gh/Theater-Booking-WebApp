@@ -165,7 +165,14 @@ While the `TrustServerCertificate=True` parameter solves the SSL certificate err
 By documenting the steps taken, error encountered, and the fix implemented, I have recorded my progress and provided a clear solution for resolving the SSL certificate error with SQL Server Express in my ASP.NET project. This documentation will be helpful for future reference and may assist others facing a similar issue.
 
 
+## Debug.WriteLine
 
+`Debug.WriteLine` is a method in .NET Framework that sends diagnostic messages to the Output window in Visual Studio during debugging. It helps with temporary debugging, allowing you to inspect code flow and check variable values.
+
+Remember to remove or comment out `Debug.WriteLine` in production code, as it can affect performance and expose sensitive information. Use preprocessor directives like `#if DEBUG ... #endif` to ensure `Debug.WriteLine` is only active in Debug builds.
+
+## Essential to setting up Db connection
+In summary, the constructor `public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)` is essential as it sets up the necessary database configuration and enables the `DbContext` to interact with the database. If you remove it, you need to ensure that you're passing the correct `DbContextOptions` to the `AppDbContext` when creating an instance of it, typically in the `Startup.cs` file or any other entry point of your application.
 
 <!--- # theSite
 
