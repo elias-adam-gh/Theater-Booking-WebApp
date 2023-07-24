@@ -174,6 +174,41 @@ Remember to remove or comment out `Debug.WriteLine` in production code, as it ca
 ## Essential to setting up Db connection
 In summary, the constructor `public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)` is essential as it sets up the necessary database configuration and enables the `DbContext` to interact with the database. If you remove it, you need to ensure that you're passing the correct `DbContextOptions` to the `AppDbContext` when creating an instance of it, typically in the `Startup.cs` file or any other entry point of your application.
 
+
+## Program and Start Difference in .NET
+`Program.cs` is the entry point of a C# console or web application. It contains the `Main` method, which is the starting point of the application's execution. When you run a C# application, the code inside the `Main` method is executed first. For console applications, this is where you typically write the initial logic and call other methods or classes to perform tasks. For web applications, the `Main` method is generally simple and used to start the web server.
+
+In a C# web application, the `Main` method inside `Program.cs` is usually minimal, and it calls `CreateHostBuilder(args).Build().Run();`, which initializes and runs the web host.
+
+`Startup.cs` is a file used specifically in C# web applications (ASP.NET Core applications). It is responsible for configuring the application's services and middleware. When the web server starts, it looks for the `Startup.cs` file and executes its methods to set up the application environment.
+
+The `Startup` class contains two crucial methods:
+
+`ConfigureServices`: This method is where you register application services with the built-in dependency injection container. Services are components that provide functionality across the application, and they can be accessed by other parts of the code through dependency injection.
+
+`Configure`: This method is used to configure the middleware pipeline. Middleware components process incoming HTTP requests and generate corresponding HTTP responses. In this method, you specify the order of middleware execution and how the application should handle HTTP requests.
+
+In summary, `Program.cs` is the entry point of both console and web applications, containing the `Main` method that starts the application's execution. On the other hand, `Startup.cs` is specific to web applications and is used to configure services and middleware, defining how the application should handle incoming requests and responses.
+
+
+
+## Top-level statements in .NET:
+Top-level statements were introduced in C# 9.0 and .NET 5 as a feature to simplify and streamline code in C# programs. Traditionally, a C# program required an entry point with a `Main` method to start the execution. With top-level statements, you can write C# code directly without the need for a separate `Main` method, making it more concise and straightforward.
+
+Relation to different types of projects:
+
+Top-level statements can be used in various types of .NET projects, including:
+
+Console Applications: Top-level statements are highly beneficial for console applications, as they allow you to write the core logic directly without the boilerplate `Main` method.
+
+Web Applications: For ASP.NET Core web applications (including MVC and Razor projects), top-level statements are not typically used in the main application entry point. The `Startup.cs` and related files still play a vital role in configuring the services and middleware for web applications.
+
+Desktop Applications: For desktop applications (e.g., WPF or WinForms), top-level statements can be used, especially in small utility tools or simpler projects where a concise and direct approach is preferred.
+
+Class Libraries: Top-level statements are generally not used in class libraries, as they don't have an entry point like console applications. Instead, class libraries are designed to be referenced and used by other projects.
+
+It's important to note that while top-level statements provide a more compact way of writing code, they may not always be suitable for large, complex projects where more structured entry points and separation of concerns are preferred. For such projects, the traditional entry point with `Main` method or the typical project structures (like `Startup.cs` for web apps) would still be more appropriate.
+
 <!--- # theSite
 
 Connected Services
