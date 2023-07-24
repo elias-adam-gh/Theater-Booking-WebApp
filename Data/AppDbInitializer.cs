@@ -102,7 +102,7 @@ namespace theSite.Data
                             StartDate = DateTime.Now.AddDays(4),
                             EndDate = DateTime.Now.AddDays(5),
                             Title = MovieCategory.Action,
-                            CinemaId = 2,
+                            CinemaId = 1,
                             ProducerId = 2
                         }
                     });
@@ -117,28 +117,9 @@ namespace theSite.Data
                         {
                             ActorId = 1,
                             MovieId = 1
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 2,
-                            MovieId = 1,
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 3,
-                            MovieId = 2
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 2
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 1
                         }
                     });
+                context.SaveChanges();
             }
         }
     }
