@@ -16,10 +16,15 @@ namespace theSite.Data
                     {
                         new Cinema()
                         {
-                            Id = 1,
                             Name = "Regal Kingstowne",
                             Description = "Theater complex with multiple screens featuring new release films, plush seating & concession stand.\r\nAddress: 5910 Kingstowne Towne Center, Alexandria, VA 22315",
                             ImageURL = "https://lh3.googleusercontent.com/p/AF1QipMs01V3JukQqT9wu7q4LWg9iyZcyRSXLFPFEYZ3=s680-w680-h510"
+                        },
+                        new Cinema() 
+                        {
+                            Name = "Disney World Cinema",
+                            Description = "The cinema in disney world, near the Orange parking garage",
+                            ImageURL = "https://orlandoinformer.com/wp-content/uploads/2018/02/AMC-Disney-Springs-24-4.jpg"
                         }
                     });
                 context.SaveChanges();
@@ -112,13 +117,18 @@ namespace theSite.Data
             if (!context.Actors_Movies.Any())
             {
                 context.Actors_Movies.AddRange(new List<Actor_Movie>()
+                {
+                    new Actor_Movie()
                     {
-                        new Actor_Movie()
-                        {
-                            ActorId = 1,
-                            MovieId = 1
-                        }
-                    });
+                        ActorId = 1,
+                        MovieId = 1
+                    },
+                    new Actor_Movie() 
+                    {
+                        ActorId = 2,
+                        MovieId = 1
+                    }
+                });
                 context.SaveChanges();
             }
         }
