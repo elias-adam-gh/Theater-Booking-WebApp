@@ -1,6 +1,103 @@
 # E-Commerce Booking Application README
 
 ## Description
+theSite is a web application project built using ASP.NET Core. It involves database operations and potentially utilizes OpenAI services. The project includes various dependencies, libraries, and key terms relevant to its implementation.
+
+## Project Structure
+- **Connected Services:** This section may include references to databases and possible integrations with OpenAI services.
+- **Dependencies:** Lists the main ASP.NET libraries used in the project.
+- **Properties:** Mentioned a JSON file related to project properties.
+- **wwwroot:** Contains static files like CSS and JavaScript.
+- **program.cs:** Explanation of the main application entry point, WebApplicationBuilder, and how the application handles HTTP requests.
+
+## Key Terms
+- **Query:** A request for specific information from a database.
+- **Enum:** A value type that allows you to define a set of named constants.
+
+## Shortcuts
+- **Property Shortcut:** `prop`
+- **Constructor Shortcut:** `ctor`
+
+## Models
+**Student Model:**
+- Properties: "pic name" and "grade".
+- Attributes: `[Key]`, `[Required]`, `[StringLength]`, `[Range]`, `[RegularExpression]`, `[EmailAddress]`, `[Compare]`, `[ForeignKey]`.
+
+**Movie Model:**
+- Properties: "Title", "ReleaseDate", "Genre", "Price".
+- Relationships: One-to-Many with Actor_Movie (via Actors_Movies navigation property), One-to-Many with Producer (via ProducerId foreign key), One-to-Many with Cinema (via CinemaId foreign key).
+
+**Actor Model:**
+- Properties: "Name", "BirthDate".
+- Relationships: One-to-Many with Actor_Movie (via Actors_Movies navigation property).
+
+**Producer Model:**
+- Properties: "Name", "BirthDate".
+- Relationships: One-to-Many with Movie (via Movies navigation property).
+
+**Cinema Model:**
+- Properties: "Name", "Location".
+- Relationships: One-to-Many with Movie (via Movies navigation property).
+
+**Actor_Movie Model:**
+- Properties: "ActorId", "MovieId".
+- Relationships: Many-to-One with Actor (via ActorId foreign key), Many-to-One with Movie (via MovieId foreign key).
+
+## AppDbContext File
+The `AppDbContext` class is defined and inherits from `DbContext`.
+The class constructor accepts an instance of `DbContextOptions<AppDbContext>` to configure the database connection.
+The `OnModelCreating` method is overridden to provide custom model configurations if needed.
+`DbSet` properties are defined for each entity class (Actor, Movie, Cinema, Producer, and Actor_Movie).
+
+## SQL Database Configuration
+1. Start of configuring SQL Server.
+2. Created MS SQL Server DB on the local machine.
+3. Connected Db to the Project through Visual Studio.
+4. Configured the connection string to the `appsettings.json` file.
+5. Configured the `AppDbContext` in the program (startup) file.
+6. Downloaded the `Microsoft.EntityFrameworkCore.SqlServer` NuGet package.
+7. End of SQL Server configuration.
+
+## Migration
+1. Download the "ms entity fw core tools" NuGet package.
+2. Ensure the "connectionstring" in the `appsettings.json` file is not null before adding a migration name in the Package Manager Console (PMC).
+3. Go to PMC and add the migration: `PM> Add-Migration <name (initial)>`.
+4. This creates a class file and another file: `20230721053004_Initial.cs`, and `AppDbContextModelSnapshot`.
+5. The "Initial" migration is the first file in the ASP.NET Core project, capturing the starting state of the database schema. It creates tables for "Actors," "Cinemas," "Producers," "Movies," and a junction table "Actors_Movies." The migration also defines the foreign key relationships between these tables, establishing the foundation for subsequent schema changes.
+6. The `AppDbContextModelSnapshot` file captures the initial state of the database schema for the ASP.NET Core project. When applying this migration, the database will be created with the defined tables and their relationships. Conversely, when rolling back the migration, all tables created in this migration will be dropped, effectively undoing the changes made in the `Up` method.
+7. You can update the database using PMC: `PM> Update-Database`.
+8. To visualize the database schema, open SQL Server Management Studio (SMSS), connect to the server, find the project's database, and add a new database diagram. Add all the tables to see the GUI of relationships.
+9. If, for instance, one of the table names was misspelled, you can:
+    - Go to the `AppDbContext` file.
+    - Rename the table.
+    - PMC: `PM> Add-Migration NameFix`.
+    - Then apply the migration: `PM> Update-Database`.
+    - Verify the changes in the Server Explorer under tables.
+
+## AppSettings.json File
+The `appsettings.json` file stores configuration settings for the application.
+It includes connection strings, logging configuration, application settings, third-party service settings, and environment-specific settings.
+
+## Order of Project Steps
+[List of ordered project steps]
+
+## Features to Consider for the Future
+1. Access to the database outside of the local machine, e.g., hosting the database on a server or cloud-based service like Microsoft Azure SQL Database.
+2. Learning about security configurations for protecting the database from potential risks.
+
+## Important Notes
+- It's essential to ensure proper security measures when enabling external access to databases. Considerations should be made regarding data privacy, authentication, and authorization to prevent unauthorized access and potential security risks.
+- When implementing seeding for the database, ensure that sensitive information is not included in the seed data. Seeding should only be used for initial data for testing and development purposes.
+- Utilize source control (e.g., Git) to track and manage changes to the project, allowing for easy collaboration and version control.
+
+
+
+
+
+<!--
+# E-Commerce Booking Application README
+
+## Description
 
 theSite is a web application project built using ASP.NET Core. It involves database operations and potentially utilizes OpenAI services. The project includes various dependencies, libraries, and key terms relevant to its implementation.
 
